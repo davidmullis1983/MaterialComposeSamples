@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.composecatalog"
+    namespace = "com.ninjachippie.composesamples"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.composecatalog"
+        applicationId = "com.ninjachippie.composesamples"
         minSdk = 21
         targetSdk = 34
         versionCode = 1
