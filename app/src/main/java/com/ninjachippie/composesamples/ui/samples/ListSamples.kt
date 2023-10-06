@@ -25,8 +25,12 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewFontScale
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 
-@Preview
+//@PreviewScreenSizes
+@PreviewFontScale
+@Preview(name = "Main")
 @Composable
 fun OneLineListItem() {
     Column {
