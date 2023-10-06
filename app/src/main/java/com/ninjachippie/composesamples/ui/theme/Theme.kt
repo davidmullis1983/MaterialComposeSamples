@@ -35,7 +35,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -46,28 +46,43 @@ import androidx.core.view.WindowCompat
 
 @Composable
 fun CatalogTheme(
-        theme: Theme,
-        content: @Composable () -> Unit
+    theme: Theme, content: @Composable () -> Unit
 ) {
-    val colorScheme = if (theme.colorMode == ColorMode.Dynamic && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-        val context = LocalContext.current
-        colorSchemeFromThemeMode(
+    val useDynamicTheme: Boolean =
+        theme.colorMode == ColorMode.Dynamic && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+    val useBrandingColorModeBoolean = theme.colorMode == ColorMode.Branding
+    val useCustomColorMode: Boolean = theme.colorMode == ColorMode.Custom
+
+    val colorScheme = when {
+        useDynamicTheme -> {
+            val context = LocalContext.current
+            colorSchemeFromThemeMode(
                 themeMode = theme.themeMode,
                 lightColorScheme = dynamicLightColorScheme(context),
                 darkColorScheme = dynamicDarkColorScheme(context),
-        )
-    } else if (theme.colorMode == ColorMode.Custom) {
-        colorSchemeFromThemeMode(
+            )
+        }
+        useBrandingColorModeBoolean -> {
+            colorSchemeFromThemeMode(
                 themeMode = theme.themeMode,
-                lightColorScheme = QvcLightColorScheme,
-                darkColorScheme = QvcDarkColorScheme,
-        )
-    } else {
-        colorSchemeFromThemeMode(
+                lightColorScheme = brandingLightColorScheme,
+                darkColorScheme = brandingDarkColorScheme,
+            )
+        }
+        useCustomColorMode -> {
+            colorSchemeFromThemeMode(
                 themeMode = theme.themeMode,
-                lightColorScheme = QvcLightColorScheme,
-                darkColorScheme = QvcDarkColorScheme,
-        )
+                lightColorScheme = customLightColorScheme,
+                darkColorScheme = customDarkColorScheme,
+            )
+        }
+        else -> {
+            colorSchemeFromThemeMode(
+                themeMode = theme.themeMode,
+                lightColorScheme = lightColorScheme(),
+                darkColorScheme = darkColorScheme(),
+            )
+        }
     }
 
     val layoutDirection = when (theme.textDirection) {
@@ -80,35 +95,34 @@ fun CatalogTheme(
     val context = LocalContext.current
     val darkTheme = isSystemInDarkTheme()
     SideEffect {
+        val window = (view.context as Activity).window
+        window.statusBarColor = colorScheme.primary.toArgb()
+        window.navigationBarColor = colorScheme.primary.toArgb()
         WindowCompat.getInsetsController(
-                context.findActivity().window,
-                view
+            context.findActivity().window, view
         ).isAppearanceLightStatusBars = !darkTheme
     }
 
     CompositionLocalProvider(
-            LocalLayoutDirection provides layoutDirection,
-            LocalDensity provides Density(
-                    density = LocalDensity.current.density,
-                    fontScale = if (theme.fontScaleMode == FontScaleMode.System) {
-                        LocalDensity.current.fontScale
-                    } else {
-                        theme.fontScale
-                    }
-            )
+        LocalLayoutDirection provides layoutDirection, LocalDensity provides Density(
+            density = LocalDensity.current.density,
+            fontScale = if (theme.fontScaleMode == FontScaleMode.System) {
+                LocalDensity.current.fontScale
+            } else {
+                theme.fontScale
+            }
+        )
     ) {
         MaterialTheme(
-                colorScheme = colorScheme,
-                content = content,
+            colorScheme = colorScheme,
+            content = content,
         )
     }
 }
 
 @Composable
 fun colorSchemeFromThemeMode(
-        themeMode: ThemeMode,
-        lightColorScheme: ColorScheme,
-        darkColorScheme: ColorScheme
+    themeMode: ThemeMode, lightColorScheme: ColorScheme, darkColorScheme: ColorScheme
 ): ColorScheme {
     return when (themeMode) {
         ThemeMode.Light -> lightColorScheme
@@ -121,160 +135,132 @@ fun colorSchemeFromThemeMode(
     }
 }
 
-private val AxonistaLightColorScheme = lightColorScheme(
-        primary = axonista_light_primary,
-        onPrimary = axonista_light_onPrimary,
-        primaryContainer = axonista_light_primaryContainer,
-        onPrimaryContainer = axonista_light_onPrimaryContainer,
-        inversePrimary = axonista_light_inversePrimary,
-        secondary = axonista_light_secondary,
-        onSecondary = axonista_light_onSecondary,
-        secondaryContainer = axonista_light_secondaryContainer,
-        onSecondaryContainer = axonista_light_onSecondaryContainer,
-        tertiary = axonista_light_tertiary,
-        onTertiary = axonista_light_onTertiary,
-        tertiaryContainer = axonista_light_tertiaryContainer,
-        onTertiaryContainer = axonista_light_onTertiaryContainer,
-        background = axonista_light_background,
-        onBackground = axonista_light_onBackground,
-        surface = axonista_light_surface,
-        onSurface = axonista_light_onSurface,
-        surfaceVariant = axonista_light_surfaceVariant,
-        onSurfaceVariant = axonista_light_onSurfaceVariant,
-        inverseSurface = axonista_light_inverseSurface,
-        inverseOnSurface = axonista_light_inverseOnSurface,
-        error = axonista_light_error,
-        onError = axonista_light_onError,
-        errorContainer = axonista_light_errorContainer,
-        onErrorContainer = axonista_light_onErrorContainer,
-        outline = axonista_light_outline,
-        outlineVariant = axonista_light_outlineVariant,
-        scrim = axonista_light_scrim,
-        surfaceTint = axonista_light_surfaceTint
-//    surfaceContainerHighest = Color(0xFFDEE4DA),
-//    surfaceContainerHigh = Color(0xFFE4EADF),
-//    surfaceContainer = Color(0xFFE9F0E5),
-//    surfaceContainerLow = Color(0xFFEFF6EB),
-//    surfaceContainerLowest = Color(0xFFFFFFFF),
-//    surfaceBright = Color(0xFFF5FBF0),
-//    surfaceDim = Color(0xFFD5DCD1)
+private val brandingLightColorScheme = lightColorScheme(
+    primary = branding_light_primary,
+    onPrimary = branding_light_onPrimary,
+    primaryContainer = branding_light_primaryContainer,
+    onPrimaryContainer = branding_light_onPrimaryContainer,
+    inversePrimary = branding_light_inversePrimary,
+    secondary = branding_light_secondary,
+    onSecondary = branding_light_onSecondary,
+    secondaryContainer = branding_light_secondaryContainer,
+    onSecondaryContainer = branding_light_onSecondaryContainer,
+    tertiary = branding_light_tertiary,
+    onTertiary = branding_light_onTertiary,
+    tertiaryContainer = branding_light_tertiaryContainer,
+    onTertiaryContainer = branding_light_onTertiaryContainer,
+    background = branding_light_background,
+    onBackground = branding_light_onBackground,
+    surface = branding_light_surface,
+    onSurface = branding_light_onSurface,
+    surfaceVariant = branding_light_surfaceVariant,
+    onSurfaceVariant = branding_light_onSurfaceVariant,
+    inverseSurface = branding_light_inverseSurface,
+    inverseOnSurface = branding_light_inverseOnSurface,
+    error = branding_light_error,
+    onError = branding_light_onError,
+    errorContainer = branding_light_errorContainer,
+    onErrorContainer = branding_light_onErrorContainer,
+    outline = branding_light_outline,
+    outlineVariant = branding_light_outlineVariant,
+    scrim = branding_light_scrim,
+    surfaceTint = branding_light_surfaceTint
 )
 
-private val AxonistaDarkColorScheme = lightColorScheme(
-        primary = axonista_dark_primary,
-        onPrimary = axonista_dark_onPrimary,
-        primaryContainer = axonista_dark_primaryContainer,
-        onPrimaryContainer = axonista_dark_onPrimaryContainer,
-        inversePrimary = axonista_dark_inversePrimary,
-        secondary = axonista_dark_secondary,
-        onSecondary = axonista_dark_onSecondary,
-        secondaryContainer = axonista_dark_secondaryContainer,
-        onSecondaryContainer = axonista_dark_onSecondaryContainer,
-        tertiary = axonista_dark_tertiary,
-        onTertiary = axonista_dark_onTertiary,
-        tertiaryContainer = axonista_dark_tertiaryContainer,
-        onTertiaryContainer = axonista_dark_onTertiaryContainer,
-        background = axonista_dark_background,
-        onBackground = axonista_dark_onBackground,
-        surface = axonista_dark_surface,
-        onSurface = axonista_dark_onSurface,
-        surfaceVariant = axonista_dark_surfaceVariant,
-        onSurfaceVariant = axonista_dark_onSurfaceVariant,
-        inverseSurface = axonista_dark_inverseSurface,
-        inverseOnSurface = axonista_dark_inverseOnSurface,
-        error = axonista_dark_error,
-        onError = axonista_dark_onError,
-        errorContainer = axonista_dark_errorContainer,
-        onErrorContainer = axonista_dark_onErrorContainer,
-        outline = axonista_dark_outline,
-        outlineVariant = axonista_dark_outlineVariant,
-        scrim = axonista_dark_scrim,
-        surfaceTint = axonista_dark_surfaceTint
-//    surfaceContainerHighest = Color(0xFFDEE4DA),
-//    surfaceContainerHigh = Color(0xFFE4EADF),
-//    surfaceContainer = Color(0xFFE9F0E5),
-//    surfaceContainerLow = Color(0xFFEFF6EB),
-//    surfaceContainerLowest = Color(0xFFFFFFFF),
-//    surfaceBright = Color(0xFFF5FBF0),
-//    surfaceDim = Color(0xFFD5DCD1)
+private val brandingDarkColorScheme = lightColorScheme(
+    primary = branding_dark_primary,
+    onPrimary = branding_dark_onPrimary,
+    primaryContainer = branding_dark_primaryContainer,
+    onPrimaryContainer = branding_dark_onPrimaryContainer,
+    inversePrimary = branding_dark_inversePrimary,
+    secondary = branding_dark_secondary,
+    onSecondary = branding_dark_onSecondary,
+    secondaryContainer = branding_dark_secondaryContainer,
+    onSecondaryContainer = branding_dark_onSecondaryContainer,
+    tertiary = branding_dark_tertiary,
+    onTertiary = branding_dark_onTertiary,
+    tertiaryContainer = branding_dark_tertiaryContainer,
+    onTertiaryContainer = branding_dark_onTertiaryContainer,
+    background = branding_dark_background,
+    onBackground = branding_dark_onBackground,
+    surface = branding_dark_surface,
+    onSurface = branding_dark_onSurface,
+    surfaceVariant = branding_dark_surfaceVariant,
+    onSurfaceVariant = branding_dark_onSurfaceVariant,
+    inverseSurface = branding_dark_inverseSurface,
+    inverseOnSurface = branding_dark_inverseOnSurface,
+    error = branding_dark_error,
+    onError = branding_dark_onError,
+    errorContainer = branding_dark_errorContainer,
+    onErrorContainer = branding_dark_onErrorContainer,
+    outline = branding_dark_outline,
+    outlineVariant = branding_dark_outlineVariant,
+    scrim = branding_dark_scrim,
+    surfaceTint = branding_dark_surfaceTint
 )
 
-private val QvcLightColorScheme = lightColorScheme(
-        primary = qvc_light_primary,
-        onPrimary = qvc_light_onPrimary,
-        primaryContainer = qvc_light_primaryContainer,
-        onPrimaryContainer = qvc_light_onPrimaryContainer,
-        inversePrimary = qvc_light_inversePrimary,
-        secondary = qvc_light_secondary,
-        onSecondary = qvc_light_onSecondary,
-        secondaryContainer = qvc_light_secondaryContainer,
-        onSecondaryContainer = qvc_light_onSecondaryContainer,
-        tertiary = qvc_light_tertiary,
-        onTertiary = qvc_light_onTertiary,
-        tertiaryContainer = qvc_light_tertiaryContainer,
-        onTertiaryContainer = qvc_light_onTertiaryContainer,
-        background = qvc_light_background,
-        onBackground = qvc_light_onBackground,
-        surface = qvc_light_surface,
-        onSurface = qvc_light_onSurface,
-        surfaceVariant = qvc_light_surfaceVariant,
-        onSurfaceVariant = qvc_light_onSurfaceVariant,
-        inverseSurface = qvc_light_inverseSurface,
-        inverseOnSurface = qvc_light_inverseOnSurface,
-        error = qvc_light_error,
-        onError = qvc_light_onError,
-        errorContainer = qvc_light_errorContainer,
-        onErrorContainer = qvc_light_onErrorContainer,
-        outline = qvc_light_outline,
-        outlineVariant = qvc_light_outlineVariant,
-        scrim = qvc_light_scrim,
-        surfaceTint = qvc_light_surfaceTint
-//    surfaceContainerHighest = Color(0xFFDEE4DA),
-//    surfaceContainerHigh = Color(0xFFE4EADF),
-//    surfaceContainer = Color(0xFFE9F0E5),
-//    surfaceContainerLow = Color(0xFFEFF6EB),
-//    surfaceContainerLowest = Color(0xFFFFFFFF),
-//    surfaceBright = Color(0xFFF5FBF0),
-//    surfaceDim = Color(0xFFD5DCD1)
+private val customLightColorScheme = lightColorScheme(
+    primary = custom_light_primary,
+    onPrimary = custom_light_onPrimary,
+    primaryContainer = custom_light_primaryContainer,
+    onPrimaryContainer = custom_light_onPrimaryContainer,
+    inversePrimary = custom_light_inversePrimary,
+    secondary = custom_light_secondary,
+    onSecondary = custom_light_onSecondary,
+    secondaryContainer = custom_light_secondaryContainer,
+    onSecondaryContainer = custom_light_onSecondaryContainer,
+    tertiary = custom_light_tertiary,
+    onTertiary = custom_light_onTertiary,
+    tertiaryContainer = custom_light_tertiaryContainer,
+    onTertiaryContainer = custom_light_onTertiaryContainer,
+    background = custom_light_background,
+    onBackground = custom_light_onBackground,
+    surface = custom_light_surface,
+    onSurface = custom_light_onSurface,
+    surfaceVariant = custom_light_surfaceVariant,
+    onSurfaceVariant = custom_light_onSurfaceVariant,
+    inverseSurface = custom_light_inverseSurface,
+    inverseOnSurface = custom_light_inverseOnSurface,
+    error = custom_light_error,
+    onError = custom_light_onError,
+    errorContainer = custom_light_errorContainer,
+    onErrorContainer = custom_light_onErrorContainer,
+    outline = custom_light_outline,
+    outlineVariant = custom_light_outlineVariant,
+    scrim = custom_light_scrim,
+    surfaceTint = custom_light_surfaceTint
 )
 
-private val QvcDarkColorScheme = darkColorScheme(
-        primary = qvc_dark_primary,
-        onPrimary = qvc_dark_onPrimary,
-        primaryContainer = qvc_dark_primaryContainer,
-        onPrimaryContainer = qvc_dark_onPrimaryContainer,
-        inversePrimary = qvc_dark_inversePrimary,
-        secondary = qvc_dark_secondary,
-        onSecondary = qvc_dark_onSecondary,
-        secondaryContainer = qvc_dark_secondaryContainer,
-        onSecondaryContainer = qvc_dark_onSecondaryContainer,
-        tertiary = qvc_dark_tertiary,
-        onTertiary = qvc_dark_onTertiary,
-        tertiaryContainer = qvc_dark_tertiaryContainer,
-        onTertiaryContainer = qvc_dark_onTertiaryContainer,
-        background = qvc_dark_background,
-        onBackground = qvc_dark_onBackground,
-        surface = qvc_dark_surface,
-        onSurface = qvc_dark_onSurface,
-        surfaceVariant = qvc_dark_surfaceVariant,
-        onSurfaceVariant = qvc_dark_onSurfaceVariant,
-        inverseSurface = qvc_dark_inverseSurface,
-        inverseOnSurface = qvc_dark_inverseOnSurface,
-        error = qvc_dark_error,
-        onError = qvc_dark_onError,
-        errorContainer = qvc_dark_errorContainer,
-        onErrorContainer = qvc_dark_onErrorContainer,
-        outline = qvc_dark_outline,
-        outlineVariant = qvc_dark_outlineVariant,
-        scrim = qvc_dark_scrim,
-        surfaceTint = qvc_dark_surfaceTint
-//    surfaceContainerHighest = Color(0xFF30362F),
-//    surfaceContainerHigh = Color(0xFF252C25),
-//    surfaceContainer = Color(0xFF1B211B),
-//    surfaceContainerLow = Color(0xFF171D17),
-//    surfaceContainerLowest = Color(0xFF0A100A),
-//    surfaceBright = Color(0xFF343B34),
-//    surfaceDim = Color(0xFF0F150F)
+private val customDarkColorScheme = darkColorScheme(
+    primary = custom_dark_primary,
+    onPrimary = custom_dark_onPrimary,
+    primaryContainer = custom_dark_primaryContainer,
+    onPrimaryContainer = custom_dark_onPrimaryContainer,
+    inversePrimary = custom_dark_inversePrimary,
+    secondary = custom_dark_secondary,
+    onSecondary = custom_dark_onSecondary,
+    secondaryContainer = custom_dark_secondaryContainer,
+    onSecondaryContainer = custom_dark_onSecondaryContainer,
+    tertiary = custom_dark_tertiary,
+    onTertiary = custom_dark_onTertiary,
+    tertiaryContainer = custom_dark_tertiaryContainer,
+    onTertiaryContainer = custom_dark_onTertiaryContainer,
+    background = custom_dark_background,
+    onBackground = custom_dark_onBackground,
+    surface = custom_dark_surface,
+    onSurface = custom_dark_onSurface,
+    surfaceVariant = custom_dark_surfaceVariant,
+    onSurfaceVariant = custom_dark_onSurfaceVariant,
+    inverseSurface = custom_dark_inverseSurface,
+    inverseOnSurface = custom_dark_inverseOnSurface,
+    error = custom_dark_error,
+    onError = custom_dark_onError,
+    errorContainer = custom_dark_errorContainer,
+    onErrorContainer = custom_dark_onErrorContainer,
+    outline = custom_dark_outline,
+    outlineVariant = custom_dark_outlineVariant,
+    scrim = custom_dark_scrim,
+    surfaceTint = custom_dark_surfaceTint
 )
 
 private tailrec fun Context.findActivity(): Activity = when (this) {

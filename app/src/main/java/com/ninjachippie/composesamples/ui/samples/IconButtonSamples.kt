@@ -19,7 +19,6 @@ package com.ninjachippie.composesamples.ui.samples
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.outlined.Lock
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.FilledIconToggleButton
 import androidx.compose.material3.FilledTonalIconButton
@@ -57,7 +56,6 @@ fun IconToggleButtonSample() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun FilledIconButtonSample() {
@@ -66,7 +64,6 @@ fun FilledIconButtonSample() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun FilledIconToggleButtonSample() {
@@ -80,7 +77,6 @@ fun FilledIconToggleButtonSample() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun FilledTonalIconButtonSample() {
@@ -89,7 +85,6 @@ fun FilledTonalIconButtonSample() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun FilledTonalIconToggleButtonSample() {
@@ -103,7 +98,6 @@ fun FilledTonalIconToggleButtonSample() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun OutlinedIconButtonSample() {
@@ -112,7 +106,6 @@ fun OutlinedIconButtonSample() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun OutlinedIconToggleButtonSample() {

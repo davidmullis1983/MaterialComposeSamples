@@ -113,7 +113,6 @@ fun SimpleScaffoldWithTopBar() {
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun ScaffoldWithSimpleSnackbar() {
@@ -146,7 +145,6 @@ fun ScaffoldWithSimpleSnackbar() {
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun ScaffoldWithIndefiniteSnackbar() {
@@ -182,7 +180,6 @@ fun ScaffoldWithIndefiniteSnackbar() {
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun ScaffoldWithCustomSnackbar() {
@@ -259,7 +256,6 @@ fun ScaffoldWithCustomSnackbar() {
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun ScaffoldWithCoroutinesSnackbar() {
@@ -278,6 +274,7 @@ fun ScaffoldWithCoroutinesSnackbar() {
                 SnackbarResult.ActionPerformed -> {
                     /* action has been performed */
                 }
+
                 SnackbarResult.Dismissed -> {
                     /* dismissed, no action needed */
                 }
@@ -307,7 +304,6 @@ fun ScaffoldWithCoroutinesSnackbar() {
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun ScaffoldWithMultilineSnackbar() {
@@ -328,8 +324,8 @@ fun ScaffoldWithMultilineSnackbar() {
                     scope.launch {
                         val longMessage =
                             "Very very very very very very very very very very very very very " +
-                                "very very very very very very very very very very very very " +
-                                "very very very very very very very very very very long message"
+                                    "very very very very very very very very very very very very " +
+                                    "very very very very very very very very very very long message"
                         snackbarHostState.showSnackbar(longMessage)
                     }
                 }

@@ -36,7 +36,7 @@ import com.ninjachippie.composesamples.model.Component
 import com.ninjachippie.composesamples.model.Example
 import com.ninjachippie.composesamples.model.Theme
 import com.ninjachippie.composesamples.ui.common.CatalogScaffold
-import androidx.compose.material3.catalog.library.ui.example.ExampleItem
+import com.ninjachippie.composesamples.ui.example.ExampleItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -73,23 +73,23 @@ fun Component(
         LazyColumn(
             modifier = Modifier.consumeWindowInsets(paddingValues),
             contentPadding = PaddingValues(
-                start = paddingValues.calculateStartPadding(ltr) + ComponentPadding,
-                top = paddingValues.calculateTopPadding() + ComponentPadding,
-                end = paddingValues.calculateEndPadding(ltr) + ComponentPadding,
-                bottom = paddingValues.calculateBottomPadding() + ComponentPadding
+                start = paddingValues.calculateStartPadding(ltr) + componentPadding,
+                top = paddingValues.calculateTopPadding() + componentPadding,
+                end = paddingValues.calculateEndPadding(ltr) + componentPadding,
+                bottom = paddingValues.calculateBottomPadding() + componentPadding
             )
         ) {
             item {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = ComponentIconVerticalPadding)
+                        .padding(vertical = componentIconVerticalPadding)
                 ) {
                     Image(
                         painter = painterResource(id = component.icon),
                         contentDescription = null,
                         modifier = Modifier
-                            .size(ComponentIconSize)
+                            .size(componentIconSize)
                             .align(Alignment.Center),
                         colorFilter = if (component.tintIcon) {
                             ColorFilter.tint(LocalContentColor.current)
@@ -104,19 +104,19 @@ fun Component(
                     text = stringResource(id = R.string.description),
                     style = MaterialTheme.typography.bodyLarge
                 )
-                Spacer(modifier = Modifier.height(ComponentPadding))
+                Spacer(modifier = Modifier.height(componentPadding))
                 Text(
                     text = component.description,
                     style = MaterialTheme.typography.bodyMedium
                 )
-                Spacer(modifier = Modifier.height(ComponentDescriptionPadding))
+                Spacer(modifier = Modifier.height(componentDescriptionPadding))
             }
             item {
                 Text(
                     text = stringResource(id = R.string.examples),
                     style = MaterialTheme.typography.bodyLarge
                 )
-                Spacer(modifier = Modifier.height(ComponentPadding))
+                Spacer(modifier = Modifier.height(componentPadding))
             }
             if (component.examples.isNotEmpty()) {
                 items(component.examples) { example ->
@@ -124,7 +124,7 @@ fun Component(
                         example = example,
                         onClick = onExampleClick
                     )
-                    Spacer(modifier = Modifier.height(ExampleItemPadding))
+                    Spacer(modifier = Modifier.height(exampleItemPadding))
                 }
             } else {
                 item {
@@ -132,15 +132,15 @@ fun Component(
                         text = stringResource(id = R.string.no_examples),
                         style = MaterialTheme.typography.bodyMedium
                     )
-                    Spacer(modifier = Modifier.height(ComponentPadding))
+                    Spacer(modifier = Modifier.height(componentPadding))
                 }
             }
         }
     }
 }
 
-private val ComponentIconSize = 108.dp
-private val ComponentIconVerticalPadding = 42.dp
-private val ComponentPadding = 16.dp
-private val ComponentDescriptionPadding = 32.dp
-private val ExampleItemPadding = 8.dp
+private val componentIconSize = 108.dp
+private val componentIconVerticalPadding = 42.dp
+private val componentPadding = 16.dp
+private val componentDescriptionPadding = 32.dp
+private val exampleItemPadding = 8.dp

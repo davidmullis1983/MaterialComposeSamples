@@ -41,7 +41,10 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LeadingIconTab
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.PrimaryScrollableTabRow
+import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.ScrollableTabRow
+import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabPosition
 import androidx.compose.material3.TabRow
@@ -50,6 +53,7 @@ import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -63,13 +67,14 @@ import androidx.compose.ui.unit.dp
 @Preview
 @Composable
 fun PrimaryTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by remember { mutableIntStateOf(0) }
     val titles = listOf("Tab 1", "Tab 2", "Tab 3 with lots of text")
     Column {
-        TabRow(selectedTabIndex = state, indicator = @Composable { tabPositions ->
+        PrimaryTabRow(selectedTabIndex = state, indicator = @Composable { tabPositions ->
             if (state < tabPositions.size) {
-                val width by animateDpAsState(targetValue = tabPositions[state].contentWidth,
-                        label = ""
+                val width by animateDpAsState(
+                    targetValue = tabPositions[state].contentWidth,
+                    label = ""
                 )
                 TabRowDefaults.PrimaryIndicator(
                     modifier = Modifier.tabIndicatorOffset(tabPositions[state]),
@@ -96,10 +101,10 @@ fun PrimaryTabs() {
 @Preview
 @Composable
 fun PrimaryIconTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by remember { mutableIntStateOf(0) }
     val icons = listOf(Icons.Filled.Favorite, Icons.Filled.Favorite, Icons.Filled.Favorite)
     Column {
-        TabRow(selectedTabIndex = state, indicator = @Composable { tabPositions ->
+        PrimaryTabRow(selectedTabIndex = state, indicator = @Composable { tabPositions ->
             if (state < tabPositions.size) {
                 TabRowDefaults.PrimaryIndicator(
                     modifier = Modifier.tabIndicatorOffset(tabPositions[state]),
@@ -121,10 +126,10 @@ fun PrimaryIconTabs() {
 @Preview
 @Composable
 fun SecondaryTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by remember { mutableIntStateOf(0) }
     val titles = listOf("Tab 1", "Tab 2", "Tab 3 with lots of text")
     Column {
-        TabRow(selectedTabIndex = state) {
+        SecondaryTabRow(selectedTabIndex = state) {
             titles.forEachIndexed { index, title ->
                 Tab(
                     selected = state == index,
@@ -144,10 +149,10 @@ fun SecondaryTabs() {
 @Preview
 @Composable
 fun TextTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by remember { mutableIntStateOf(0) }
     val titles = listOf("Tab 1", "Tab 2", "Tab 3 with lots of text")
     Column {
-        TabRow(selectedTabIndex = state) {
+        PrimaryTabRow(selectedTabIndex = state) {
             titles.forEachIndexed { index, title ->
                 Tab(
                     selected = state == index,
@@ -167,10 +172,10 @@ fun TextTabs() {
 @Preview
 @Composable
 fun IconTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by remember { mutableIntStateOf(0) }
     val icons = listOf(Icons.Filled.Favorite, Icons.Filled.Favorite, Icons.Filled.Favorite)
     Column {
-        TabRow(selectedTabIndex = state) {
+        PrimaryTabRow(selectedTabIndex = state) {
             icons.forEachIndexed { index, icon ->
                 Tab(
                     selected = state == index,
@@ -190,14 +195,14 @@ fun IconTabs() {
 @Preview
 @Composable
 fun TextAndIconTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by remember { mutableIntStateOf(0) }
     val titlesAndIcons = listOf(
         "Tab 1" to Icons.Filled.Favorite,
         "Tab 2" to Icons.Filled.Favorite,
         "Tab 3 with lots of text" to Icons.Filled.Favorite
     )
     Column {
-        TabRow(selectedTabIndex = state) {
+        PrimaryTabRow(selectedTabIndex = state) {
             titlesAndIcons.forEachIndexed { index, (title, icon) ->
                 Tab(
                     selected = state == index,
@@ -218,14 +223,14 @@ fun TextAndIconTabs() {
 @Preview
 @Composable
 fun LeadingIconTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by remember { mutableIntStateOf(0) }
     val titlesAndIcons = listOf(
         "Tab" to Icons.Filled.Favorite,
         "Tab & icon" to Icons.Filled.Favorite,
         "Tab 3 with lots of text" to Icons.Filled.Favorite
     )
     Column {
-        ScrollableTabRow(selectedTabIndex = state) {
+        PrimaryScrollableTabRow(selectedTabIndex = state) {
             titlesAndIcons.forEachIndexed { index, (title, icon) ->
                 LeadingIconTab(
                     selected = state == index,
@@ -246,7 +251,7 @@ fun LeadingIconTabs() {
 @Preview
 @Composable
 fun ScrollingPrimaryTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by remember { mutableIntStateOf(0) }
     val titles = listOf(
         "Tab 1",
         "Tab 2",
@@ -260,10 +265,11 @@ fun ScrollingPrimaryTabs() {
         "Tab 10"
     )
     Column {
-        ScrollableTabRow(selectedTabIndex = state, indicator = @Composable { tabPositions ->
+        PrimaryScrollableTabRow(selectedTabIndex = state, indicator = @Composable { tabPositions ->
             if (state < tabPositions.size) {
-                val width by animateDpAsState(targetValue = tabPositions[state].contentWidth,
-                        label = ""
+                val width by animateDpAsState(
+                    targetValue = tabPositions[state].contentWidth,
+                    label = ""
                 )
                 TabRowDefaults.PrimaryIndicator(
                     modifier = Modifier.tabIndicatorOffset(tabPositions[state]),
@@ -290,7 +296,7 @@ fun ScrollingPrimaryTabs() {
 @Preview
 @Composable
 fun ScrollingSecondaryTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by remember { mutableIntStateOf(0) }
     val titles = listOf(
         "Tab 1",
         "Tab 2",
@@ -304,7 +310,7 @@ fun ScrollingSecondaryTabs() {
         "Tab 10"
     )
     Column {
-        ScrollableTabRow(selectedTabIndex = state) {
+        PrimaryScrollableTabRow(selectedTabIndex = state) {
             titles.forEachIndexed { index, title ->
                 Tab(
                     selected = state == index,
@@ -324,7 +330,7 @@ fun ScrollingSecondaryTabs() {
 @Preview
 @Composable
 fun ScrollingTextTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by remember { mutableIntStateOf(0) }
     val titles = listOf(
         "Tab 1",
         "Tab 2",
@@ -338,7 +344,7 @@ fun ScrollingTextTabs() {
         "Tab 10"
     )
     Column {
-        ScrollableTabRow(selectedTabIndex = state) {
+        PrimaryScrollableTabRow(selectedTabIndex = state) {
             titles.forEachIndexed { index, title ->
                 Tab(
                     selected = state == index,
@@ -358,10 +364,10 @@ fun ScrollingTextTabs() {
 @Preview
 @Composable
 fun FancyTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by remember { mutableIntStateOf(0) }
     val titles = listOf("Tab 1", "Tab 2", "Tab 3")
     Column {
-        TabRow(selectedTabIndex = state) {
+        PrimaryTabRow(selectedTabIndex = state) {
             titles.forEachIndexed { index, title ->
                 FancyTab(
                     title = title,
@@ -381,7 +387,7 @@ fun FancyTabs() {
 @Preview
 @Composable
 fun FancyIndicatorTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by remember { mutableIntStateOf(0) }
     val titles = listOf("Tab 1", "Tab 2", "Tab 3")
 
     // Reuse the default offset animation modifier, but use our own indicator
@@ -393,7 +399,7 @@ fun FancyIndicatorTabs() {
     }
 
     Column {
-        TabRow(
+        PrimaryTabRow(
             selectedTabIndex = state,
             indicator = indicator
         ) {
@@ -416,7 +422,7 @@ fun FancyIndicatorTabs() {
 @Preview
 @Composable
 fun FancyIndicatorContainerTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by remember { mutableIntStateOf(0) }
     val titles = listOf("Tab 1", "Tab 2", "Tab 3")
 
     val indicator = @Composable { tabPositions: List<TabPosition> ->
@@ -424,7 +430,7 @@ fun FancyIndicatorContainerTabs() {
     }
 
     Column {
-        TabRow(
+        PrimaryTabRow(
             selectedTabIndex = state,
             indicator = indicator
         ) {
@@ -447,7 +453,7 @@ fun FancyIndicatorContainerTabs() {
 @Preview
 @Composable
 fun ScrollingFancyIndicatorContainerTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by remember { mutableIntStateOf(0) }
     val titles = listOf(
         "Tab 1",
         "Tab 2",
@@ -465,7 +471,7 @@ fun ScrollingFancyIndicatorContainerTabs() {
     }
 
     Column {
-        ScrollableTabRow(
+        PrimaryScrollableTabRow(
             selectedTabIndex = state,
             indicator = indicator
         ) {
@@ -489,11 +495,15 @@ fun ScrollingFancyIndicatorContainerTabs() {
 fun FancyTab(title: String, onClick: () -> Unit, selected: Boolean) {
     Tab(selected, onClick) {
         Column(
-            Modifier.padding(10.dp).height(50.dp).fillMaxWidth(),
+            Modifier
+                .padding(10.dp)
+                .height(50.dp)
+                .fillMaxWidth(),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Box(
-                Modifier.size(10.dp)
+                Modifier
+                    .size(10.dp)
                     .align(Alignment.CenterHorizontally)
                     .background(
                         color = if (selected) MaterialTheme.colorScheme.primary
@@ -528,8 +538,9 @@ fun FancyAnimatedIndicator(tabPositions: List<TabPosition>, selectedTabIndex: In
         MaterialTheme.colorScheme.secondary,
         MaterialTheme.colorScheme.tertiary,
     )
-    val transition = updateTransition(selectedTabIndex,
-            label = ""
+    val transition = updateTransition(
+        selectedTabIndex,
+        label = ""
     )
     val indicatorStart by transition.animateDp(
         transitionSpec = {
@@ -542,7 +553,7 @@ fun FancyAnimatedIndicator(tabPositions: List<TabPosition>, selectedTabIndex: In
                 spring(dampingRatio = 1f, stiffness = 1000f)
             }
         },
-            label = ""
+        label = ""
     ) {
         tabPositions[it].left
     }
@@ -558,7 +569,7 @@ fun FancyAnimatedIndicator(tabPositions: List<TabPosition>, selectedTabIndex: In
                 spring(dampingRatio = 1f, stiffness = 50f)
             }
         },
-            label = ""
+        label = ""
     ) {
         tabPositions[it].right
     }

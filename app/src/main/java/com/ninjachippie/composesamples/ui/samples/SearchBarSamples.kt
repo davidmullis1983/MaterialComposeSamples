@@ -54,7 +54,10 @@ fun SearchBarSample() {
     var text by rememberSaveable { mutableStateOf("") }
     var active by rememberSaveable { mutableStateOf(false) }
 
-    Box(Modifier.fillMaxSize().semantics { isTraversalGroup = true }) {
+    Box(
+        Modifier
+            .fillMaxSize()
+            .semantics { isTraversalGroup = true }) {
         SearchBar(
             modifier = Modifier
                 .align(Alignment.TopCenter)
@@ -93,7 +96,10 @@ fun SearchBarSample() {
         ) {
             val list = List(100) { "Text $it" }
             items(count = list.size) {
-                Text(list[it], Modifier.fillMaxWidth().padding(horizontal = 16.dp))
+                Text(list[it],
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp))
             }
         }
     }
@@ -106,7 +112,10 @@ fun DockedSearchBarSample() {
     var text by rememberSaveable { mutableStateOf("") }
     var active by rememberSaveable { mutableStateOf(false) }
 
-    Box(Modifier.fillMaxSize().semantics { isTraversalGroup = true }) {
+    Box(
+        Modifier
+            .fillMaxSize()
+            .semantics { isTraversalGroup = true }) {
         DockedSearchBar(
             modifier = Modifier
                 .align(Alignment.TopCenter)
@@ -144,7 +153,10 @@ fun DockedSearchBarSample() {
         ) {
             val list = List(100) { "Text $it" }
             items(count = list.size) {
-                Text(list[it], Modifier.fillMaxWidth().padding(horizontal = 16.dp))
+                Text(list[it],
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp))
             }
         }
     }

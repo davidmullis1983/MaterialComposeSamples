@@ -80,7 +80,7 @@ fun DatePickerDialogSample() {
     // TODO demo how to read the selected date from the state.
     if (openDialog.value) {
         val datePickerState = rememberDatePickerState()
-        val confirmEnabled = derivedStateOf { datePickerState.selectedDateMillis != null }
+        val confirmEnabled = remember { derivedStateOf { datePickerState.selectedDateMillis != null } }
         DatePickerDialog(
             onDismissRequest = {
                 // Dismiss the dialog when the user clicks outside the dialog or on the back
@@ -135,7 +135,7 @@ fun DatePickerWithDateSelectableDatesSample() {
                     val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
                     calendar.timeInMillis = utcTimeMillis
                     calendar[Calendar.DAY_OF_WEEK] != Calendar.SUNDAY &&
-                        calendar[Calendar.DAY_OF_WEEK] != Calendar.SATURDAY
+                            calendar[Calendar.DAY_OF_WEEK] != Calendar.SATURDAY
                 }
             }
 
@@ -191,7 +191,7 @@ fun DateRangePickerSample() {
                     snackScope.launch {
                         snackState.showSnackbar(
                             "Saved range (timestamps): " +
-                                "${state.selectedStartDateMillis!!..state.selectedEndDateMillis!!}"
+                                    "${state.selectedStartDateMillis!!..state.selectedEndDateMillis!!}"
                         )
                     }
                 },

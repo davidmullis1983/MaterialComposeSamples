@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package androidx.compose.material3.catalog.library.ui.common
+package com.ninjachippie.composesamples.ui.common
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -77,7 +77,7 @@ fun CatalogTopAppBar(
                     IconButton(onClick = onFavoriteClick) {
                         Icon(
                             imageVector =
-                                if (favorite) Icons.Filled.Favorite else Icons.Outlined.Favorite,
+                            if (favorite) Icons.Filled.Favorite else Icons.Outlined.Favorite,
                             tint = if (favorite)
                                 MaterialTheme.colorScheme.primary
                             else

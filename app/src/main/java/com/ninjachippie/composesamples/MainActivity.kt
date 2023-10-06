@@ -21,8 +21,8 @@ class MainActivity : ComponentActivity() {
             CatalogTheme(theme = Theme()) {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
                 ) {
                     Material3CatalogApp(initialFavoriteRoute = "home")
                 }
@@ -33,12 +33,12 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(
-        name: String,
-        modifier: Modifier = Modifier
+    name: String,
+    modifier: Modifier = Modifier
 ) {
     Text(
-            text = "Hello $name!",
-            modifier = modifier
+        text = "Hello $name!",
+        modifier = modifier
     )
 }
 

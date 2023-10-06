@@ -114,7 +114,9 @@ fun AnimatedExtendedFloatingActionButtonSample() {
         },
         floatingActionButtonPosition = FabPosition.End,
     ) {
-        LazyColumn(state = listState, modifier = Modifier.fillMaxSize()) {
+        LazyColumn(state = listState, modifier = Modifier
+            .fillMaxSize()
+            .padding(it)) {
             for (index in 0 until 100) {
                 item {
                     Text(

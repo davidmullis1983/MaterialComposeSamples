@@ -43,6 +43,7 @@ import com.ninjachippie.composesamples.model.Theme
 import com.ninjachippie.composesamples.model.ThemeMode
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -62,26 +63,26 @@ fun ThemePicker(
             .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom)
             .add(
                 WindowInsets(
-                    top = ThemePickerPadding,
-                    bottom = ThemePickerPadding
+                    top = themePickerPadding,
+                    bottom = themePickerPadding
                 )
             )
             .asPaddingValues(),
-        verticalArrangement = Arrangement.spacedBy(ThemePickerPadding)
+        verticalArrangement = Arrangement.spacedBy(themePickerPadding)
     ) {
         item {
             Text(
                 text = stringResource(id = R.string.theme),
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(horizontal = ThemePickerPadding)
+                modifier = Modifier.padding(horizontal = themePickerPadding)
             )
             // LazyVerticalGrid can't be used within LazyColumn due to nested scrolling
             val themeModes = ThemeMode.values()
             Column(
-                modifier = Modifier.padding(ThemePickerPadding),
-                verticalArrangement = Arrangement.spacedBy(ThemePickerPadding)
+                modifier = Modifier.padding(themePickerPadding),
+                verticalArrangement = Arrangement.spacedBy(themePickerPadding)
             ) {
-                Row(horizontalArrangement = Arrangement.spacedBy(ThemePickerPadding)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(themePickerPadding)) {
                     ThemeModeItem(
                         modifier = Modifier.weight(1f),
                         themeMode = themeModes[0],
@@ -109,15 +110,15 @@ fun ThemePicker(
             Text(
                 text = stringResource(id = R.string.color_mode),
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(horizontal = ThemePickerPadding)
+                modifier = Modifier.padding(horizontal = themePickerPadding)
             )
             // LazyVerticalGrid can't be used within LazyColumn due to nested scrolling
             val colorModes = ColorMode.values()
             Column(
-                modifier = Modifier.padding(ThemePickerPadding),
-                verticalArrangement = Arrangement.spacedBy(ThemePickerPadding)
+                modifier = Modifier.padding(themePickerPadding),
+                verticalArrangement = Arrangement.spacedBy(themePickerPadding)
             ) {
-                Row(horizontalArrangement = Arrangement.spacedBy(ThemePickerPadding)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(themePickerPadding)) {
                     ColorModeItem(
                         modifier = Modifier.weight(1f),
                         colorMode = colorModes[0],
@@ -145,15 +146,15 @@ fun ThemePicker(
             Text(
                 text = stringResource(id = R.string.text_direction),
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(horizontal = ThemePickerPadding)
+                modifier = Modifier.padding(horizontal = themePickerPadding)
             )
             // LazyVerticalGrid can't be used within LazyColumn due to nested scrolling
             val textDirections = TextDirection.values()
             Column(
-                modifier = Modifier.padding(ThemePickerPadding),
-                verticalArrangement = Arrangement.spacedBy(ThemePickerPadding)
+                modifier = Modifier.padding(themePickerPadding),
+                verticalArrangement = Arrangement.spacedBy(themePickerPadding)
             ) {
-                Row(horizontalArrangement = Arrangement.spacedBy(ThemePickerPadding)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(themePickerPadding)) {
                     TextDirectionItem(
                         modifier = Modifier.weight(1f),
                         textDirection = textDirections[0],
@@ -181,12 +182,12 @@ fun ThemePicker(
             Text(
                 text = stringResource(id = R.string.font_scale),
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(horizontal = ThemePickerPadding)
+                modifier = Modifier.padding(horizontal = themePickerPadding)
             )
             Column {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(ThemePickerPadding)
+                    horizontalArrangement = Arrangement.spacedBy(themePickerPadding)
                 ) {
                     RadioButton(
                         selected = theme.fontScaleMode == FontScaleMode.System,
@@ -202,7 +203,7 @@ fun ThemePicker(
 
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(ThemePickerPadding)
+                    horizontalArrangement = Arrangement.spacedBy(themePickerPadding)
                 ) {
                     RadioButton(
                         selected = theme.fontScaleMode == FontScaleMode.Custom,
@@ -216,11 +217,11 @@ fun ThemePicker(
                     )
                 }
 
-                var fontScale by remember { mutableStateOf(theme.fontScale) }
+                var fontScale by remember { mutableFloatStateOf(theme.fontScale) }
                 FontScaleItem(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = ThemePickerPadding),
+                        .padding(horizontal = themePickerPadding),
                     enabled = theme.fontScaleMode == FontScaleMode.Custom,
                     fontScale = fontScale,
                     onValueChange = { fontScale = it },
@@ -253,7 +254,7 @@ private fun ThemeModeItem(
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(ThemePickerPadding)
+        horizontalArrangement = Arrangement.spacedBy(themePickerPadding)
     ) {
         RadioButton(
             selected = selected,
@@ -276,7 +277,7 @@ private fun ColorModeItem(
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(ThemePickerPadding)
+        horizontalArrangement = Arrangement.spacedBy(themePickerPadding)
     ) {
         val enabled = when {
             colorMode == ColorMode.Dynamic && Build.VERSION.SDK_INT < Build.VERSION_CODES.S -> false
@@ -304,7 +305,7 @@ private fun TextDirectionItem(
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(ThemePickerPadding)
+        horizontalArrangement = Arrangement.spacedBy(themePickerPadding)
     ) {
         RadioButton(
             selected = selected,
@@ -342,4 +343,4 @@ private fun FontScaleItem(
     }
 }
 
-private val ThemePickerPadding = 16.dp
+private val themePickerPadding = 16.dp

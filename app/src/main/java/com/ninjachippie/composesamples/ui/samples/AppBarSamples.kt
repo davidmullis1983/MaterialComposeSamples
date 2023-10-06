@@ -452,7 +452,6 @@ fun BottomAppBarWithFAB() {
  * A sample for a [BottomAppBar] that collapses when the content is scrolled up, and
  * appears when the content scrolled down.
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun ExitAlwaysBottomAppBar() {

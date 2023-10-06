@@ -173,6 +173,6 @@ fun RichTooltipWithManualInvocationSample() {
 const val richTooltipSubheadText = "Permissions"
 const val richTooltipText =
     "Configure permissions for selected service accounts. " +
-        "You can add and remove service account members and assign roles to them. " +
-        "Visit go/permissions for details"
+            "You can add and remove service account members and assign roles to them. " +
+            "Visit go/permissions for details"
 const val richTooltipActionText = "Request Access"

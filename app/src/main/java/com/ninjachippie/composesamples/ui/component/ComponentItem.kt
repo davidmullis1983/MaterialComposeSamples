@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package androidx.compose.material3.catalog.library.ui.component
+package com.ninjachippie.composesamples.ui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -45,15 +45,17 @@ fun ComponentItem(
     OutlinedCard(
         onClick = { onClick(component) },
         modifier = Modifier
-            .height(ComponentItemHeight)
-            .padding(ComponentItemOuterPadding)
+            .height(componentItemHeight)
+            .padding(componentItemOuterPadding)
     ) {
-        Box(modifier = Modifier.fillMaxSize().padding(ComponentItemInnerPadding)) {
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .padding(componentItemInnerPadding)) {
             Image(
                 painter = painterResource(id = component.icon),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(ComponentItemIconSize)
+                    .size(componentItemIconSize)
                     .align(Alignment.Center),
                 colorFilter = if (component.tintIcon) {
                     ColorFilter.tint(LocalContentColor.current)
@@ -71,7 +73,7 @@ fun ComponentItem(
     }
 }
 
-private val ComponentItemHeight = 180.dp
-private val ComponentItemOuterPadding = 4.dp
-private val ComponentItemInnerPadding = 16.dp
-private val ComponentItemIconSize = 80.dp
+private val componentItemHeight = 180.dp
+private val componentItemOuterPadding = 4.dp
+private val componentItemInnerPadding = 16.dp
+private val componentItemIconSize = 80.dp

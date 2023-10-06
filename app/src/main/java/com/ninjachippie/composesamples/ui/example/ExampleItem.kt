@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package androidx.compose.material3.catalog.library.ui.example
+package com.ninjachippie.composesamples.ui.example
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -46,19 +46,19 @@ fun ExampleItem(
         onClick = { onClick(example) },
         modifier = Modifier.fillMaxWidth()
     ) {
-        Row(modifier = Modifier.padding(ExampleItemPadding)) {
+        Row(modifier = Modifier.padding(exampleItemPadding)) {
             Column(modifier = Modifier.weight(1f, fill = true)) {
                 Text(
                     text = example.name,
                     style = MaterialTheme.typography.titleSmall
                 )
-                Spacer(modifier = Modifier.height(ExampleItemTextPadding))
+                Spacer(modifier = Modifier.height(exampleItemTextPadding))
                 Text(
                     text = example.description,
                     style = MaterialTheme.typography.bodySmall,
                 )
             }
-            Spacer(modifier = Modifier.width(ExampleItemPadding))
+            Spacer(modifier = Modifier.width(exampleItemPadding))
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
                 contentDescription = null,
@@ -68,5 +68,5 @@ fun ExampleItem(
     }
 }
 
-private val ExampleItemPadding = 16.dp
-private val ExampleItemTextPadding = 8.dp
+private val exampleItemPadding = 16.dp
+private val exampleItemTextPadding = 8.dp

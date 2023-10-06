@@ -18,15 +18,7 @@ package com.ninjachippie.composesamples.ui.samples
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.requiredSize
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.RangeSlider
 import androidx.compose.material3.RangeSliderState
 import androidx.compose.material3.Slider
@@ -43,8 +35,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import kotlin.math.roundToInt
 
 @Preview
 @Composable
@@ -240,8 +230,8 @@ fun RangeSliderWithCustomComponents() {
             endInteractionSource = endInteractionSource,
             startThumb = {
                 SliderDefaults.Thumb(
-                        interactionSource = startInteractionSource,
-                        colors = startThumbAndTrackColors
+                    interactionSource = startInteractionSource,
+                    colors = startThumbAndTrackColors
                 )
 //                Label(
 //                    label = {
@@ -268,8 +258,8 @@ fun RangeSliderWithCustomComponents() {
             },
             endThumb = {
                 SliderDefaults.Thumb(
-                        interactionSource = endInteractionSource,
-                        colors = endThumbColors
+                    interactionSource = endInteractionSource,
+                    colors = endThumbColors
                 )
 //                Label(
 //                    label = {

@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package androidx.compose.material3.catalog.library.ui.example
+package com.ninjachippie.composesamples.ui.example
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -31,7 +30,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun Example(
     component: Component,

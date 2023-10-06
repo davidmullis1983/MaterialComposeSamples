@@ -16,7 +16,6 @@
 
 package com.ninjachippie.composesamples.ui.home
 
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
@@ -27,7 +26,7 @@ import androidx.compose.foundation.lazy.grid.items
 import com.ninjachippie.composesamples.model.Component
 import com.ninjachippie.composesamples.model.Theme
 import com.ninjachippie.composesamples.ui.common.CatalogScaffold
-import androidx.compose.material3.catalog.library.ui.component.ComponentItem
+import com.ninjachippie.composesamples.ui.component.ComponentItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -35,7 +34,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.ninjachippie.composesamples.R
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun Home(
     components: List<Component>,
@@ -55,7 +53,7 @@ fun Home(
     ) { paddingValues ->
         LazyVerticalGrid(
             modifier = Modifier.consumeWindowInsets(paddingValues),
-            columns = GridCells.Adaptive(HomeCellMinSize),
+            columns = GridCells.Adaptive(homeCellMinSize),
             content = {
                 items(components) { component ->
                     ComponentItem(
@@ -65,14 +63,14 @@ fun Home(
                 }
             },
             contentPadding = PaddingValues(
-                start = paddingValues.calculateStartPadding(ltr) + HomePadding,
-                top = paddingValues.calculateTopPadding() + HomePadding,
-                end = paddingValues.calculateEndPadding(ltr) + HomePadding,
-                bottom = paddingValues.calculateBottomPadding() + HomePadding
+                start = paddingValues.calculateStartPadding(ltr) + homePadding,
+                top = paddingValues.calculateTopPadding() + homePadding,
+                end = paddingValues.calculateEndPadding(ltr) + homePadding,
+                bottom = paddingValues.calculateBottomPadding() + homePadding
             )
         )
     }
 }
 
-private val HomeCellMinSize = 180.dp
-private val HomePadding = 12.dp
+private val homeCellMinSize = 180.dp
+private val homePadding = 12.dp

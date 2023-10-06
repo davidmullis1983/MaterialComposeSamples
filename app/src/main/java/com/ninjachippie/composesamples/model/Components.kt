@@ -42,14 +42,14 @@ private fun nextId(): Int = nextId.also { nextId += 1 }
 
 // Components are ordered alphabetically by name.
 
-private val Badge =
+private val badge =
     Component(
         id = nextId(),
         name = "Badge",
         description =
         "A badge can contain dynamic information, such as the presence of a new " +
-            "notification or a number of pending requests. Badges can be icon only or contain " +
-            "a short text.",
+                "notification or a number of pending requests. Badges can be icon only or contain " +
+                "a short text.",
         // No badge icon
         guidelinesUrl = "$ComponentGuidelinesUrl/badge",
         docsUrl = "$DocsUrl#badge",
@@ -57,11 +57,11 @@ private val Badge =
         examples = BadgeExamples
     )
 
-private val BottomAppBars = Component(
+private val bottomAppBars = Component(
     id = nextId(),
     name = "Bottom App Bar",
     description = "A bottom app bar displays navigation and key actions at the bottom of mobile " +
-        "screens.",
+            "screens.",
     // No bottom app bar icon
     guidelinesUrl = "$ComponentGuidelinesUrl/bottom-app-bars",
     docsUrl = "$DocsUrl#bottomappbar",
@@ -69,11 +69,11 @@ private val BottomAppBars = Component(
     examples = BottomAppBarsExamples
 )
 
-private val BottomSheets = Component(
+private val bottomSheets = Component(
     id = nextId(),
     name = "Bottom Sheet",
     description = "Bottom sheets are surfaces containing supplementary content, anchored to the " +
-        "bottom of the screen.",
+            "bottom of the screen.",
     // No bottom sheet icon
     guidelinesUrl = "$ComponentGuidelinesUrl/bottom-sheets",
     docsUrl = "$DocsUrl#bottomsheet",
@@ -81,11 +81,11 @@ private val BottomSheets = Component(
     examples = BottomSheetExamples
 )
 
-private val Buttons = Component(
+private val buttons = Component(
     id = nextId(),
     name = "Buttons",
     description = "Buttons help people initiate actions, from sending an email, to sharing a " +
-        "document, to liking a post.",
+            "document, to liking a post.",
     // No buttons icon
     guidelinesUrl = "$ComponentGuidelinesUrl/buttons",
     docsUrl = "$PackageSummaryUrl#button",
@@ -93,7 +93,7 @@ private val Buttons = Component(
     examples = ButtonsExamples,
 )
 
-private val Card = Component(
+private val card = Component(
     id = nextId(),
     name = "Card",
     description = "Cards contain content and actions that relate information about a subject.",
@@ -104,11 +104,11 @@ private val Card = Component(
     examples = CardExamples
 )
 
-private val Checkboxes = Component(
+private val checkboxes = Component(
     id = nextId(),
     name = "Checkboxes",
     description = "Checkboxes allow the user to select one or more items from a set or turn an " +
-        "option on or off.",
+            "option on or off.",
     // No checkbox icon
     guidelinesUrl = "$ComponentGuidelinesUrl/checkboxes",
     docsUrl = "$DocsUrl#checkbox",
@@ -116,11 +116,11 @@ private val Checkboxes = Component(
     examples = CheckboxesExamples
 )
 
-private val Chips = Component(
+private val chips = Component(
     id = nextId(),
     name = "Chips",
     description = "Chips allow users to enter information, make selections, filter content, or" +
-        " trigger actions.",
+            " trigger actions.",
     // No chip icon
     guidelinesUrl = "$ComponentGuidelinesUrl/chips",
     docsUrl = "$DocsUrl#chips",
@@ -128,7 +128,7 @@ private val Chips = Component(
     examples = ChipsExamples
 )
 
-private val DatePickers = Component(
+private val datePickers = Component(
     id = nextId(),
     name = "Date pickers",
     description = "Date pickers let users select a date or range of dates.",
@@ -139,11 +139,11 @@ private val DatePickers = Component(
     examples = DatePickerExamples
 )
 
-private val Dialogs = Component(
+private val dialogs = Component(
     id = nextId(),
     name = "Dialogs",
     description = "Dialogs provide important prompts in a user flow. They can require an action, " +
-        "communicate information, or help users accomplish a task.",
+            "communicate information, or help users accomplish a task.",
     // No dialogs icon
     guidelinesUrl = "$ComponentGuidelinesUrl/dialogs",
     docsUrl = "$PackageSummaryUrl#alertdialog",
@@ -151,11 +151,11 @@ private val Dialogs = Component(
     examples = DialogExamples
 )
 
-private val ExtendedFloatingActionButton = Component(
+private val extendedFloatingActionButton = Component(
     id = nextId(),
     name = "Extended FAB",
     description = "Extended FABs help people take primary actions. They're wider than FABs to " +
-        "accommodate a text label and larger target area.",
+            "accommodate a text label and larger target area.",
     // No extended FAB icon
     guidelinesUrl = "$ComponentGuidelinesUrl/extended-fab",
     docsUrl = "$PackageSummaryUrl#extendedfloatingactionbutton",
@@ -163,11 +163,11 @@ private val ExtendedFloatingActionButton = Component(
     examples = ExtendedFABExamples,
 )
 
-private val FloatingActionButtons = Component(
+private val floatingActionButtons = Component(
     id = nextId(),
     name = "Floating action buttons",
     description = "The FAB represents the most important action on a screen. It puts key actions " +
-        "within reach.",
+            "within reach.",
     // No FABs icon
     guidelinesUrl = "$ComponentGuidelinesUrl/floating-action-button",
     docsUrl = "$PackageSummaryUrl#floatingactionbutton",
@@ -175,7 +175,7 @@ private val FloatingActionButtons = Component(
     examples = FloatingActionButtonsExamples,
 )
 
-private val IconButtons = Component(
+private val iconButtons = Component(
     id = nextId(),
     name = "Icon buttons",
     description = "Icon buttons allow users to take actions and make choices with a single tap.",
@@ -186,7 +186,7 @@ private val IconButtons = Component(
     examples = IconButtonExamples,
 )
 
-private val Lists = Component(
+private val lists = Component(
     id = nextId(),
     name = "Lists",
     description = "Lists are continuous, vertical indexes of text or images.",
@@ -197,7 +197,7 @@ private val Lists = Component(
     sourceUrl = "$Material3SourceUrl/ListItem.kt",
     examples = ListsExamples,
 )
-private val Menus = Component(
+private val menus = Component(
     id = nextId(),
     name = "Menus",
     description = "Menus display a list of choices on temporary surfaces.",
@@ -208,11 +208,11 @@ private val Menus = Component(
     examples = MenusExamples
 )
 
-private val NavigationBar = Component(
+private val navigationBar = Component(
     id = nextId(),
     name = "Navigation bar",
     description = "Navigation bars offer a persistent and convenient way to switch between " +
-        "primary destinations in an app.",
+            "primary destinations in an app.",
     // No navigation bar icon
     guidelinesUrl = "$ComponentGuidelinesUrl/navigation-bar",
     docsUrl = "$PackageSummaryUrl#navigationbar",
@@ -220,7 +220,7 @@ private val NavigationBar = Component(
     examples = NavigationBarExamples
 )
 
-private val NavigationDrawer = Component(
+private val navigationDrawer = Component(
     id = nextId(),
     name = "Navigation drawer",
     description = "Navigation drawers provide ergonomic access to destinations in an app.",
@@ -231,11 +231,11 @@ private val NavigationDrawer = Component(
     examples = NavigationDrawerExamples
 )
 
-private val NavigationRail = Component(
+private val navigationRail = Component(
     id = nextId(),
     name = "Navigation rail",
     description = "Navigation rails provide access to primary destinations in apps when using " +
-        "tablet and desktop screens.",
+            "tablet and desktop screens.",
     // No navigation rail icon
     guidelinesUrl = "$ComponentGuidelinesUrl/navigation-rail",
     docsUrl = "$PackageSummaryUrl#navigationrail",
@@ -243,11 +243,11 @@ private val NavigationRail = Component(
     examples = NavigationRailExamples
 )
 
-private val ProgressIndicators = Component(
+private val progressIndicators = Component(
     id = nextId(),
     name = "Progress indicators",
     description = "Progress indicators express an unspecified wait time or display the length of " +
-        "a process.",
+            "a process.",
     // No progress indicator icon
     guidelinesUrl = "$ComponentGuidelinesUrl/progress-indicators",
     docsUrl = "$DocsUrl#circularprogressindicator",
@@ -255,7 +255,7 @@ private val ProgressIndicators = Component(
     examples = ProgressIndicatorsExamples
 )
 
-private val RadioButtons = Component(
+private val radioButtons = Component(
     id = nextId(),
     name = "Radio buttons",
     description = "Radio buttons allow the user to select one option from a set.",
@@ -266,11 +266,11 @@ private val RadioButtons = Component(
     examples = RadioButtonsExamples
 )
 
-private val SearchBars = Component(
+private val searchBars = Component(
     id = nextId(),
     name = "Search bars",
     description = "Search bars allow users to enter a keyword or phrase and get relevant " +
-        "information.",
+            "information.",
     // No search bar icon
     guidelinesUrl = "", // No guidelines yet
     docsUrl = "", // No docs yet
@@ -278,7 +278,7 @@ private val SearchBars = Component(
     examples = SearchBarExamples
 )
 
-private val SegmentedButtons = Component(
+private val segmentedButtons = Component(
     id = nextId(),
     name = "Segmented Button",
     description = "Segmented buttons help people select options, switch views, or sort elements.",
@@ -288,7 +288,7 @@ private val SegmentedButtons = Component(
     examples = SegmentedButtonExamples
 )
 
-private val Sliders = Component(
+private val sliders = Component(
     id = nextId(),
     name = "Sliders",
     description = "Sliders allow users to make selections from a range of values.",
@@ -299,11 +299,11 @@ private val Sliders = Component(
     examples = SlidersExamples
 )
 
-private val Snackbars = Component(
+private val snackbars = Component(
     id = nextId(),
     name = "Snackbars",
     description = "Snackbars provide brief messages about app processes at the bottom of the " +
-        "screen.",
+            "screen.",
     // No snackbar icon
     guidelinesUrl = "$ComponentGuidelinesUrl/snackbars",
     docsUrl = "$DocsUrl#snackbar",
@@ -311,7 +311,7 @@ private val Snackbars = Component(
     examples = SnackbarsExamples
 )
 
-private val Switches = Component(
+private val switches = Component(
     id = nextId(),
     name = "Switches",
     description = "Switches toggle the state of a single setting on or off.",
@@ -323,11 +323,11 @@ private val Switches = Component(
     examples = SwitchExamples
 )
 
-private val Tabs = Component(
+private val tabs = Component(
     id = nextId(),
     name = "Tabs",
     description = "Tabs organize content across different screens, data sets, and other " +
-        "interactions.",
+            "interactions.",
     // No tabs icon
     guidelinesUrl = "$ComponentGuidelinesUrl/tabs",
     docsUrl = "$DocsUrl#tab",
@@ -335,7 +335,7 @@ private val Tabs = Component(
     examples = TabsExamples
 )
 
-private val TextFields = Component(
+private val textFields = Component(
     id = nextId(),
     name = "Text fields",
     description = "Text fields let users enter and edit text.",
@@ -346,7 +346,7 @@ private val TextFields = Component(
     examples = TextFieldsExamples
 )
 
-private val Tooltips = Component(
+private val tooltips = Component(
     id = nextId(),
     name = "Tooltips",
     description = "Tooltips call user attention to an anchor component.",
@@ -357,7 +357,7 @@ private val Tooltips = Component(
     examples = TooltipsExamples
 )
 
-private val TimePickers = Component(
+private val timePickers = Component(
     id = nextId(),
     name = "Time Picker",
     description = "Time picker allows the user to choose time of day.",
@@ -368,7 +368,7 @@ private val TimePickers = Component(
     examples = TimePickerExamples
 )
 
-private val TopAppBar = Component(
+private val topAppBar = Component(
     id = nextId(),
     name = "Top app bar",
     description = "Top app bars display information and actions at the top of a screen.",
@@ -381,33 +381,33 @@ private val TopAppBar = Component(
 
 /** Components for the catalog, ordered alphabetically by name. */
 val Components = listOf(
-    Badge,
-    BottomAppBars,
-    BottomSheets,
-    Buttons,
-    Card,
-    Checkboxes,
-    Chips,
-    DatePickers,
-    Dialogs,
-    ExtendedFloatingActionButton,
-    FloatingActionButtons,
-    IconButtons,
-    Lists,
-    Menus,
-    NavigationBar,
-    NavigationDrawer,
-    NavigationRail,
-    ProgressIndicators,
-    RadioButtons,
-    SearchBars,
-    SegmentedButtons,
-    Sliders,
-    Snackbars,
-    Switches,
-    Tabs,
-    TextFields,
-    TimePickers,
-    Tooltips,
-    TopAppBar
+    badge,
+    bottomAppBars,
+    bottomSheets,
+    buttons,
+    card,
+    checkboxes,
+    chips,
+    datePickers,
+    dialogs,
+    extendedFloatingActionButton,
+    floatingActionButtons,
+    iconButtons,
+    lists,
+    menus,
+    navigationBar,
+    navigationDrawer,
+    navigationRail,
+    progressIndicators,
+    radioButtons,
+    searchBars,
+    segmentedButtons,
+    sliders,
+    snackbars,
+    switches,
+    tabs,
+    textFields,
+    timePickers,
+    tooltips,
+    topAppBar
 )

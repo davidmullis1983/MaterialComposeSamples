@@ -24,19 +24,19 @@ data class Theme(
     val textDirection: TextDirection = TextDirection.System,
 ) {
     constructor(map: Map<String, Float>) : this(
-        themeMode = ThemeMode.values()[map.getValue(ThemeModeKey).toInt()],
-        colorMode = ColorMode.values()[map.getValue(ColorModeKey).toInt()],
-        fontScale = map.getValue(FontScaleKey).toFloat(),
-        fontScaleMode = FontScaleMode.values()[map.getValue(FontScaleModeKey).toInt()],
-        textDirection = TextDirection.values()[map.getValue(TextDirectionKey).toInt()],
+        themeMode = ThemeMode.values()[map.getValue(THEME_MODE_KEY).toInt()],
+        colorMode = ColorMode.values()[map.getValue(COLOR_MODE_KEY).toInt()],
+        fontScale = map.getValue(FONT_SCALE_KEY).toFloat(),
+        fontScaleMode = FontScaleMode.values()[map.getValue(FONT_SCALE_MODE_KEY).toInt()],
+        textDirection = TextDirection.values()[map.getValue(TEXT_DIRECTION_KEY).toInt()],
     )
 
     fun toMap() = mapOf(
-        ThemeModeKey to themeMode.ordinal.toFloat(),
-        ColorModeKey to colorMode.ordinal.toFloat(),
-        FontScaleKey to fontScale,
-        FontScaleModeKey to fontScaleMode.ordinal.toFloat(),
-        TextDirectionKey to textDirection.ordinal.toFloat(),
+        THEME_MODE_KEY to themeMode.ordinal.toFloat(),
+        COLOR_MODE_KEY to colorMode.ordinal.toFloat(),
+        FONT_SCALE_KEY to fontScale,
+        FONT_SCALE_MODE_KEY to fontScaleMode.ordinal.toFloat(),
+        TEXT_DIRECTION_KEY to textDirection.ordinal.toFloat(),
     )
 }
 
@@ -67,6 +67,8 @@ enum class ColorMode(val label: String) {
      * current device.
      */
     Baseline("Baseline"),
+    Branding("Branding"),
+
     /**
      * Build a color scheme from a pre-selected color palette that behaves the same as a dynamic color
      * palette.
@@ -74,6 +76,7 @@ enum class ColorMode(val label: String) {
      * Useful for testing dynamic color schemes on devices that don't support dynamic colors.
      */
     Custom("Custom"),
+
     /**
      * Build a color scheme from the dynamic colors taken from the Android System.
      *
@@ -96,8 +99,8 @@ enum class ThemeMode {
 const val MinFontScale = 0.4f
 const val MaxFontScale = 2f
 
-private const val ThemeModeKey = "themeMode"
-private const val ColorModeKey = "colorMode"
-private const val FontScaleKey = "fontScale"
-private const val FontScaleModeKey = "fontScaleMode"
-private const val TextDirectionKey = "textDirection"
+private const val THEME_MODE_KEY = "themeMode"
+private const val COLOR_MODE_KEY = "colorMode"
+private const val FONT_SCALE_KEY = "fontScale"
+private const val FONT_SCALE_MODE_KEY = "fontScaleMode"
+private const val TEXT_DIRECTION_KEY = "textDirection"

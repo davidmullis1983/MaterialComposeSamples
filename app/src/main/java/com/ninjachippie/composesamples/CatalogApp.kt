@@ -34,11 +34,11 @@ fun Material3CatalogApp(initialFavoriteRoute: String?) {
     val theme = userPreferencesRepository.theme.collectAsState(Theme()).value
     CatalogTheme(theme = theme) {
         NavGraph(initialFavoriteRoute = initialFavoriteRoute,
-                theme = theme,
-                onThemeChange = {
-                    coroutineScope.launch {
-                        userPreferencesRepository.saveTheme(it)
-                    }
-                })
+            theme = theme,
+            onThemeChange = {
+                coroutineScope.launch {
+                    userPreferencesRepository.saveTheme(it)
+                }
+            })
     }
 }

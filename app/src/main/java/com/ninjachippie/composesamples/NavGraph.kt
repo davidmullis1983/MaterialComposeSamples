@@ -16,7 +16,7 @@
 
 package com.ninjachippie.composesamples
 
-import androidx.compose.material3.catalog.library.ui.example.Example
+import com.ninjachippie.composesamples.ui.example.Example
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

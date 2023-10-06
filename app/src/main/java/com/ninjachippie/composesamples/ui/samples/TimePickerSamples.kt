@@ -242,9 +242,10 @@ fun TimePickerDialog(
                     style = MaterialTheme.typography.labelMedium
                 )
                 content()
-                Row(modifier = Modifier
-                    .height(40.dp)
-                    .fillMaxWidth()
+                Row(
+                    modifier = Modifier
+                        .height(40.dp)
+                        .fillMaxWidth()
                 ) {
                     toggle()
                     Spacer(modifier = Modifier.weight(1f))

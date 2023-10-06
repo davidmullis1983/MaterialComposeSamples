@@ -50,9 +50,12 @@ fun SwipeToDismissListItems() {
                     DismissedToEnd -> Color.Green
                     DismissedToStart -> Color.Red
                 },
-                    label = ""
+                label = ""
             )
-            Box(Modifier.fillMaxSize().background(color))
+            Box(
+                Modifier
+                    .fillMaxSize()
+                    .background(color))
         },
         dismissContent = {
             Card {

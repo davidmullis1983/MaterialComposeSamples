@@ -22,7 +22,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.catalog.library.ui.common.CatalogTopAppBar
 import androidx.compose.material3.rememberModalBottomSheetState
 import com.ninjachippie.composesamples.model.Theme
 import com.ninjachippie.composesamples.ui.theme.ThemePicker
